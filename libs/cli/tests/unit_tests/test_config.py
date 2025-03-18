@@ -202,13 +202,13 @@ def test_config_to_docker_simple():
                 "http": {"app": "../../examples/my_app.py:app"},
             }
         ),
-        "langchain/langgraph-api",
+        "langchain/langgraph_api",
     )
     expected_docker_stdin = """\
-FROM langchain/langgraph-api:3.11
+FROM langchain/langgraph_api:3.11
 # -- Installing local requirements --
 COPY --from=__outer_requirements.txt requirements.txt /deps/__outer_graphs_reqs_a/graphs_reqs_a/requirements.txt
-RUN PYTHONDONTWRITEBYTECODE=1 pip install --no-cache-dir -c /api/constraints.txt -r /deps/__outer_graphs_reqs_a/graphs_reqs_a/requirements.txt
+RUN PYTHONDONTWRITEBYTECODE=1 pip install --no-cache-dir -c /langgraph_api/constraints.txt -r /deps/__outer_graphs_reqs_a/graphs_reqs_a/requirements.txt
 # -- End of local requirements install --
 # -- Adding local package ../../examples --
 COPY --from=examples . /deps/examples
@@ -236,7 +236,7 @@ RUN set -ex && \\
     done
 # -- End of non-package dependency graphs_reqs_a --
 # -- Installing all local dependencies --
-RUN PYTHONDONTWRITEBYTECODE=1 pip install --no-cache-dir -c /api/constraints.txt -e /deps/*
+RUN PYTHONDONTWRITEBYTECODE=1 pip install --no-cache-dir -c /langgraph_api/constraints.txt -e /deps/*
 # -- End of local dependencies install --
 ENV LANGGRAPH_HTTP='{"app": "/deps/examples/my_app.py:app"}'
 ENV LANGSERVE_GRAPHS='{"agent": "/deps/__outer_unit_tests/unit_tests/agent.py:graph"}'
@@ -257,10 +257,10 @@ def test_config_to_docker_outside_path():
     actual_docker_stdin, additional_contexts = config_to_docker(
         PATH_TO_CONFIG,
         validate_config({"dependencies": [".", ".."], "graphs": graphs}),
-        "langchain/langgraph-api",
+        "langchain/langgraph_api",
     )
     expected_docker_stdin = """\
-FROM langchain/langgraph-api:3.11
+FROM langchain/langgraph_api:3.11
 # -- Adding non-package dependency unit_tests --
 ADD . /deps/__outer_unit_tests/unit_tests
 RUN set -ex && \\
@@ -284,7 +284,7 @@ RUN set -ex && \\
     done
 # -- End of non-package dependency tests --
 # -- Installing all local dependencies --
-RUN PYTHONDONTWRITEBYTECODE=1 pip install --no-cache-dir -c /api/constraints.txt -e /deps/*
+RUN PYTHONDONTWRITEBYTECODE=1 pip install --no-cache-dir -c /langgraph_api/constraints.txt -e /deps/*
 # -- End of local dependencies install --
 ENV LANGSERVE_GRAPHS='{"agent": "/deps/__outer_unit_tests/unit_tests/agent.py:graph"}'
 WORKDIR /deps/__outer_unit_tests/unit_tests\
@@ -306,10 +306,10 @@ def test_config_to_docker_pipconfig():
                 "pip_config_file": "pipconfig.txt",
             }
         ),
-        "langchain/langgraph-api",
+        "langchain/langgraph_api",
     )
     expected_docker_stdin = """\
-FROM langchain/langgraph-api:3.11
+FROM langchain/langgraph_api:3.11
 ADD pipconfig.txt /pipconfig.txt
 # -- Adding non-package dependency unit_tests --
 ADD . /deps/__outer_unit_tests/unit_tests
@@ -323,7 +323,7 @@ RUN set -ex && \\
     done
 # -- End of non-package dependency unit_tests --
 # -- Installing all local dependencies --
-RUN PIP_CONFIG_FILE=/pipconfig.txt PYTHONDONTWRITEBYTECODE=1 pip install --no-cache-dir -c /api/constraints.txt -e /deps/*
+RUN PIP_CONFIG_FILE=/pipconfig.txt PYTHONDONTWRITEBYTECODE=1 pip install --no-cache-dir -c /langgraph_api/constraints.txt -e /deps/*
 # -- End of local dependencies install --
 ENV LANGSERVE_GRAPHS='{"agent": "/deps/__outer_unit_tests/unit_tests/agent.py:graph"}'
 WORKDIR /deps/__outer_unit_tests/unit_tests\
@@ -339,7 +339,7 @@ def test_config_to_docker_invalid_inputs():
         config_to_docker(
             PATH_TO_CONFIG,
             validate_config({"dependencies": ["./missing"], "graphs": graphs}),
-            "langchain/langgraph-api",
+            "langchain/langgraph_api",
         )
 
     # test missing local module
@@ -348,7 +348,7 @@ def test_config_to_docker_invalid_inputs():
         config_to_docker(
             PATH_TO_CONFIG,
             validate_config({"dependencies": ["."], "graphs": graphs}),
-            "langchain/langgraph-api",
+            "langchain/langgraph_api",
         )
 
 
@@ -362,10 +362,10 @@ def test_config_to_docker_local_deps():
                 "graphs": graphs,
             }
         ),
-        "langchain/langgraph-api-custom",
+        "langchain/langgraph_api-custom",
     )
     expected_docker_stdin = """\
-FROM langchain/langgraph-api-custom:3.11
+FROM langchain/langgraph_api-custom:3.11
 # -- Adding non-package dependency graphs --
 ADD ./graphs /deps/__outer_graphs/src
 RUN set -ex && \\
@@ -378,7 +378,7 @@ RUN set -ex && \\
     done
 # -- End of non-package dependency graphs --
 # -- Installing all local dependencies --
-RUN PYTHONDONTWRITEBYTECODE=1 pip install --no-cache-dir -c /api/constraints.txt -e /deps/*
+RUN PYTHONDONTWRITEBYTECODE=1 pip install --no-cache-dir -c /langgraph_api/constraints.txt -e /deps/*
 # -- End of local dependencies install --
 ENV LANGSERVE_GRAPHS='{"agent": "/deps/__outer_graphs/src/agent.py:graph"}'\
 """
@@ -404,15 +404,15 @@ dependencies = ["langchain"]"""
                 "graphs": graphs,
             }
         ),
-        "langchain/langgraph-api",
+        "langchain/langgraph_api",
     )
     os.remove(pyproject_path)
-    expected_docker_stdin = """FROM langchain/langgraph-api:3.11
+    expected_docker_stdin = """FROM langchain/langgraph_api:3.11
 # -- Adding local package . --
 ADD . /deps/unit_tests
 # -- End of local package . --
 # -- Installing all local dependencies --
-RUN PYTHONDONTWRITEBYTECODE=1 pip install --no-cache-dir -c /api/constraints.txt -e /deps/*
+RUN PYTHONDONTWRITEBYTECODE=1 pip install --no-cache-dir -c /langgraph_api/constraints.txt -e /deps/*
 # -- End of local dependencies install --
 ENV LANGSERVE_GRAPHS='{"agent": "/deps/unit_tests/graphs/agent.py:graph"}'
 WORKDIR /deps/unit_tests"""
@@ -433,13 +433,13 @@ def test_config_to_docker_end_to_end():
                 "dockerfile_lines": ["ARG meow", "ARG foo"],
             }
         ),
-        "langchain/langgraph-api",
+        "langchain/langgraph_api",
     )
-    expected_docker_stdin = """FROM langchain/langgraph-api:3.12
+    expected_docker_stdin = """FROM langchain/langgraph_api:3.12
 ARG meow
 ARG foo
 ADD pipconfig.txt /pipconfig.txt
-RUN PIP_CONFIG_FILE=/pipconfig.txt PYTHONDONTWRITEBYTECODE=1 pip install --no-cache-dir -c /api/constraints.txt langchain langchain_openai
+RUN PIP_CONFIG_FILE=/pipconfig.txt PYTHONDONTWRITEBYTECODE=1 pip install --no-cache-dir -c /langgraph_api/constraints.txt langchain langchain_openai
 # -- Adding non-package dependency graphs --
 ADD ./graphs/ /deps/__outer_graphs/src
 RUN set -ex && \\
@@ -452,7 +452,7 @@ RUN set -ex && \\
     done
 # -- End of non-package dependency graphs --
 # -- Installing all local dependencies --
-RUN PIP_CONFIG_FILE=/pipconfig.txt PYTHONDONTWRITEBYTECODE=1 pip install --no-cache-dir -c /api/constraints.txt -e /deps/*
+RUN PIP_CONFIG_FILE=/pipconfig.txt PYTHONDONTWRITEBYTECODE=1 pip install --no-cache-dir -c /langgraph_api/constraints.txt -e /deps/*
 # -- End of local dependencies install --
 ENV LANGSERVE_GRAPHS='{"agent": "/deps/__outer_graphs/src/agent.py:graph"}'"""
     assert clean_empty_lines(actual_docker_stdin) == expected_docker_stdin
@@ -472,9 +472,9 @@ def test_config_to_docker_nodejs():
                 "ui": {"agent": "./graphs/agent.ui.jsx"},
             }
         ),
-        "langchain/langgraphjs-api",
+        "langchain/langgraphjs-langgraph_api",
     )
-    expected_docker_stdin = """FROM langchain/langgraphjs-api:20
+    expected_docker_stdin = """FROM langchain/langgraphjs-langgraph_api:20
 ARG meow
 ARG foo
 ADD . /deps/unit_tests
@@ -482,7 +482,7 @@ RUN cd /deps/unit_tests && npm i
 ENV LANGSERVE_GRAPHS='{"agent": "./graphs/agent.js:graph"}'
 ENV LANGGRAPH_UI='{"agent": "./graphs/agent.ui.jsx"}'
 WORKDIR /deps/unit_tests
-RUN (test ! -f /api/langgraph_api/js/build.mts && echo "Prebuild script not found, skipping") || tsx /api/langgraph_api/js/build.mts"""
+RUN (test ! -f /langgraph_api/langgraph_api/js/build.mts && echo "Prebuild script not found, skipping") || tsx /langgraph_api/langgraph_api/js/build.mts"""
 
     assert clean_empty_lines(actual_docker_stdin) == expected_docker_stdin
     assert additional_contexts == {}
@@ -497,7 +497,7 @@ def test_config_to_compose_simple_config():
         build:
             context: .
             dockerfile_inline: |
-                FROM langchain/langgraph-api:3.11
+                FROM langchain/langgraph_api:3.11
                 # -- Adding non-package dependency unit_tests --
                 ADD . /deps/__outer_unit_tests/unit_tests
                 RUN set -ex && \\
@@ -510,7 +510,7 @@ def test_config_to_compose_simple_config():
                     done
                 # -- End of non-package dependency unit_tests --
                 # -- Installing all local dependencies --
-                RUN PYTHONDONTWRITEBYTECODE=1 pip install --no-cache-dir -c /api/constraints.txt -e /deps/*
+                RUN PYTHONDONTWRITEBYTECODE=1 pip install --no-cache-dir -c /langgraph_api/constraints.txt -e /deps/*
                 # -- End of local dependencies install --
                 ENV LANGSERVE_GRAPHS='{"agent": "/deps/__outer_unit_tests/unit_tests/agent.py:graph"}'
                 WORKDIR /deps/__outer_unit_tests/unit_tests
@@ -518,7 +518,7 @@ def test_config_to_compose_simple_config():
     actual_compose_stdin = config_to_compose(
         PATH_TO_CONFIG,
         validate_config({"dependencies": ["."], "graphs": graphs}),
-        "langchain/langgraph-api",
+        "langchain/langgraph_api",
     )
     assert clean_empty_lines(actual_compose_stdin) == expected_compose_stdin
 
@@ -531,7 +531,7 @@ def test_config_to_compose_env_vars():
         build:
             context: .
             dockerfile_inline: |
-                FROM langchain/langgraph-api-custom:3.11
+                FROM langchain/langgraph_api-custom:3.11
                 # -- Adding non-package dependency unit_tests --
                 ADD . /deps/__outer_unit_tests/unit_tests
                 RUN set -ex && \\
@@ -544,7 +544,7 @@ def test_config_to_compose_env_vars():
                     done
                 # -- End of non-package dependency unit_tests --
                 # -- Installing all local dependencies --
-                RUN PYTHONDONTWRITEBYTECODE=1 pip install --no-cache-dir -c /api/constraints.txt -e /deps/*
+                RUN PYTHONDONTWRITEBYTECODE=1 pip install --no-cache-dir -c /langgraph_api/constraints.txt -e /deps/*
                 # -- End of local dependencies install --
                 ENV LANGSERVE_GRAPHS='{"agent": "/deps/__outer_unit_tests/unit_tests/agent.py:graph"}'
                 WORKDIR /deps/__outer_unit_tests/unit_tests
@@ -559,7 +559,7 @@ def test_config_to_compose_env_vars():
                 "env": {"OPENAI_API_KEY": openai_api_key},
             }
         ),
-        "langchain/langgraph-api-custom",
+        "langchain/langgraph_api-custom",
     )
     assert clean_empty_lines(actual_compose_stdin) == expected_compose_stdin
 
@@ -572,7 +572,7 @@ def test_config_to_compose_env_file():
         build:
             context: .
             dockerfile_inline: |
-                FROM langchain/langgraph-api:3.11
+                FROM langchain/langgraph_api:3.11
                 # -- Adding non-package dependency unit_tests --
                 ADD . /deps/__outer_unit_tests/unit_tests
                 RUN set -ex && \\
@@ -585,7 +585,7 @@ def test_config_to_compose_env_file():
                     done
                 # -- End of non-package dependency unit_tests --
                 # -- Installing all local dependencies --
-                RUN PYTHONDONTWRITEBYTECODE=1 pip install --no-cache-dir -c /api/constraints.txt -e /deps/*
+                RUN PYTHONDONTWRITEBYTECODE=1 pip install --no-cache-dir -c /langgraph_api/constraints.txt -e /deps/*
                 # -- End of local dependencies install --
                 ENV LANGSERVE_GRAPHS='{"agent": "/deps/__outer_unit_tests/unit_tests/agent.py:graph"}'
                 WORKDIR /deps/__outer_unit_tests/unit_tests
@@ -593,7 +593,7 @@ def test_config_to_compose_env_file():
     actual_compose_stdin = config_to_compose(
         PATH_TO_CONFIG,
         validate_config({"dependencies": ["."], "graphs": graphs, "env": ".env"}),
-        "langchain/langgraph-api",
+        "langchain/langgraph_api",
     )
     assert clean_empty_lines(actual_compose_stdin) == expected_compose_stdin
 
@@ -606,7 +606,7 @@ def test_config_to_compose_watch():
         build:
             context: .
             dockerfile_inline: |
-                FROM langchain/langgraph-api:3.11
+                FROM langchain/langgraph_api:3.11
                 # -- Adding non-package dependency unit_tests --
                 ADD . /deps/__outer_unit_tests/unit_tests
                 RUN set -ex && \\
@@ -619,7 +619,7 @@ def test_config_to_compose_watch():
                     done
                 # -- End of non-package dependency unit_tests --
                 # -- Installing all local dependencies --
-                RUN PYTHONDONTWRITEBYTECODE=1 pip install --no-cache-dir -c /api/constraints.txt -e /deps/*
+                RUN PYTHONDONTWRITEBYTECODE=1 pip install --no-cache-dir -c /langgraph_api/constraints.txt -e /deps/*
                 # -- End of local dependencies install --
                 ENV LANGSERVE_GRAPHS='{"agent": "/deps/__outer_unit_tests/unit_tests/agent.py:graph"}'
                 WORKDIR /deps/__outer_unit_tests/unit_tests
@@ -634,7 +634,7 @@ def test_config_to_compose_watch():
     actual_compose_stdin = config_to_compose(
         PATH_TO_CONFIG,
         validate_config({"dependencies": ["."], "graphs": graphs}),
-        "langchain/langgraph-api",
+        "langchain/langgraph_api",
         watch=True,
     )
     assert clean_empty_lines(actual_compose_stdin) == expected_compose_stdin
@@ -649,7 +649,7 @@ def test_config_to_compose_end_to_end():
         build:
             context: .
             dockerfile_inline: |
-                FROM langchain/langgraph-api:3.11
+                FROM langchain/langgraph_api:3.11
                 # -- Adding non-package dependency unit_tests --
                 ADD . /deps/__outer_unit_tests/unit_tests
                 RUN set -ex && \\
@@ -662,7 +662,7 @@ def test_config_to_compose_end_to_end():
                     done
                 # -- End of non-package dependency unit_tests --
                 # -- Installing all local dependencies --
-                RUN PYTHONDONTWRITEBYTECODE=1 pip install --no-cache-dir -c /api/constraints.txt -e /deps/*
+                RUN PYTHONDONTWRITEBYTECODE=1 pip install --no-cache-dir -c /langgraph_api/constraints.txt -e /deps/*
                 # -- End of local dependencies install --
                 ENV LANGSERVE_GRAPHS='{"agent": "/deps/__outer_unit_tests/unit_tests/agent.py:graph"}'
                 WORKDIR /deps/__outer_unit_tests/unit_tests
@@ -677,7 +677,7 @@ def test_config_to_compose_end_to_end():
     actual_compose_stdin = config_to_compose(
         PATH_TO_CONFIG,
         validate_config({"dependencies": ["."], "graphs": graphs, "env": ".env"}),
-        "langchain/langgraph-api",
+        "langchain/langgraph_api",
         watch=True,
     )
     assert clean_empty_lines(actual_compose_stdin) == expected_compose_stdin

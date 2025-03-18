@@ -101,7 +101,7 @@ auth = Auth()
 @auth.authenticate
 async def authenticate(headers: dict) -> Auth.types.MinimalUserDict:
     # Validate credentials (e.g., API key, JWT token)
-    api_key = headers.get("x-api-key")
+    api_key = headers.get("x-langgraph_api-key")
     if not api_key or not is_valid_key(api_key):
         raise Auth.exceptions.HTTPException(
             status_code=401,

@@ -169,7 +169,7 @@ def compose_as_dict(
         }
     }
 
-    # Add Postgres service before langgraph-api if it is needed
+    # Add Postgres service before langgraph_api if it is needed
     if include_db:
         services["langgraph-postgres"] = {
             "image": "pgvector/pgvector:pg16",
@@ -200,8 +200,8 @@ def compose_as_dict(
             port=debugger_port, base_url=debugger_base_url
         )["langgraph-debugger"]
 
-    # Add langgraph-api service
-    services["langgraph-api"] = {
+    # Add langgraph_api service
+    services["langgraph_api"] = {
         "ports": [f'"{port}:8000"'],
         "depends_on": {
             "langgraph-redis": {"condition": "service_healthy"},
@@ -212,16 +212,16 @@ def compose_as_dict(
         },
     }
 
-    # If Postgres is included, add it to the dependencies of langgraph-api
+    # If Postgres is included, add it to the dependencies of langgraph_api
     if include_db:
-        services["langgraph-api"]["depends_on"]["langgraph-postgres"] = {
+        services["langgraph_api"]["depends_on"]["langgraph-postgres"] = {
             "condition": "service_healthy"
         }
 
-    # Additional healthcheck for langgraph-api if required
+    # Additional healthcheck for langgraph_api if required
     if capabilities.healthcheck_start_interval:
-        services["langgraph-api"]["healthcheck"] = {
-            "test": "python /api/healthcheck.py",
+        services["langgraph_api"]["healthcheck"] = {
+            "test": "python /langgraph_api/healthcheck.py",
             "interval": "60s",
             "start_interval": "1s",
             "start_period": "10s",

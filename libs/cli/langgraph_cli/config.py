@@ -174,7 +174,7 @@ class AuthConfig(TypedDict, total=False):
     disable_studio_auth: bool
     """Optional. Whether to disable LangSmith API-key authentication for requests originating the Studio. 
     
-    Defaults to False, meaning that if a particular header is set, the server will verify the `x-api-key` header
+    Defaults to False, meaning that if a particular header is set, the server will verify the `x-langgraph_api-key` header
     value is a valid API key for the deployment's workspace. If True, all requests will go through your custom
     authentication logic, regardless of origin of the request.
     """
@@ -586,7 +586,7 @@ def _assemble_local_deps(config_path: pathlib.Path, config: Config) -> LocalDeps
     # ensure reserved package names are not used
     reserved = {
         "src",
-        "langgraph-api",
+        "langgraph_api",
         "langgraph_api",
         "langgraph",
         "langchain-core",
@@ -881,7 +881,7 @@ def python_config_to_docker(
     """Generate a Dockerfile from the configuration."""
     # configure pip
     pip_install = (
-        "PYTHONDONTWRITEBYTECODE=1 pip install --no-cache-dir -c /api/constraints.txt"
+        "PYTHONDONTWRITEBYTECODE=1 pip install --no-cache-dir -c /langgraph_api/constraints.txt"
     )
     if config.get("pip_config_file"):
         pip_install = f"PIP_CONFIG_FILE=/pipconfig.txt {pip_install}"
@@ -1070,7 +1070,7 @@ ENV LANGSERVE_GRAPHS='{json.dumps(config["graphs"])}'
 
 WORKDIR {faux_path}
 
-RUN (test ! -f /api/langgraph_api/js/build.mts && echo "Prebuild script not found, skipping") || tsx /api/langgraph_api/js/build.mts""",
+RUN (test ! -f /langgraph_api/langgraph_api/js/build.mts && echo "Prebuild script not found, skipping") || tsx /langgraph_api/langgraph_api/js/build.mts""",
         {},
     )
 

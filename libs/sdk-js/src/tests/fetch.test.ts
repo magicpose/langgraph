@@ -55,7 +55,7 @@ describe.each([[""], ["mocked"]])("Client uses %s fetch", (description) => {
 
   describe("createRuns", () => {
     it("should create an example with the given input and generation", async () => {
-      const client = new Client({ apiKey: "test-api-key" });
+      const client = new Client({ apiKey: "test-langgraph_api-key" });
 
       const thread = await client.threads.create();
       expect(expectedFetchMock).toHaveBeenCalledTimes(1);

@@ -1,0 +1,28 @@
+{
+  "python_version": "3.11",
+  "dependencies": [
+    "."
+  ],
+  "graphs": {
+    "agent": "graphs/graph.py:graph",
+    "db": "graphs/text2sql/db.py:db_graph",
+    "knowledge": "graphs/knowledge/graph.py:doc_graph"
+  },
+  "env": {
+    "POSTGRES_URL": "postgresql://postgres:postgres@10.1.3.122:5433/postgres?sslmode=disable",
+    "LANGFUSE_HOST": "http://10.1.3.122:3005",
+    "LANGFUSE_PUBLIC_KEY": "pk-lf-2f7f19a3-0cd2-47f2-bb5e-7bcf84a64ac6",
+    "LANGFUSE_SECRET_KEY": "sk-lf-e66fb8a1-d69f-4e34-8455-c27ae57cf4d9",
+    "AGENT_AUTH_ENDPOINT": "http://10.0.36.123:9080",
+    "PHOENIX_COLLECTOR_ENDPOINT": "http://10.1.5.56:6006",
+    "OPENAI_API_KEY": "sk-uG93vRV5V2Dog95J15FfCdE5DaAe438fBb17C642F2E1Ae57",
+    "OPENAI_API_BASE": "http://ai-api.e-tudou.com:9000/v1",
+    "PHOENIX_PROJECT": "agent",
+    "SUB_SERVICE_CODE": "knowledge_document",
+    "SERVICE_CODE": "agentos_creator",
+    "SOURCE":"agentos",
+    "DATABASE_CONF": "{\"database_id\":773,\"database_name\":\"potato_geo_element\",\"database_type\":\"postgresql\"}",
+    "FILES": "[{\"fileId\":1900363333246738432,\"fileName\":\"新型基础测绘与实景三维中国建设技术文件-2.doc\"},{\"fileId\":1900363349843599360,\"fileName\":\"浙江省1∶10000比例尺基础地理信息数据更新技术规程.doc\"},{\"fileId\":1900363349872959488,\"fileName\":\"新型基础测绘与实景三维中国建设技术文件-10.doc\"},{\"fileId\":1900363340683239424,\"fileName\":\"一种知识图谱驱动的新型基础地理实体生产方法_叶帅.doc\"},{\"fileId\":1900363340549021696,\"fileName\":\"新型基础测绘与实景三维中国建设技术文件-12.doc\"},{\"fileId\":1900363348132323328,\"fileName\":\"新型基础测绘与实景三维中国建设技术文件-11.doc\"},{\"fileId\":1900363349843599362,\"fileName\":\"新型基础测绘与实景三维中国建设技术文件-5.doc\"},{\"fileId\":1900363335155146752,\"fileName\":\"新型基础测绘与实景三维中国建设技术文件-7.doc\"},{\"fileId\":1900363349843599361,\"fileName\":\"新型基础测绘与实景三维中国建设技术文件-9.doc\"},{\"fileId\":1900363333989130240,\"fileName\":\"新型基础测绘与实景三维中国建设技术文件-6.doc\"},{\"fileId\":1900363335511662592,\"fileName\":\"新型基础测绘与实景三维中国建设技术文件-8.doc\"},{\"fileId\":1900363333955575808,\"fileName\":\"新型基础测绘与实景三维中国建设技术文件-4.doc\"},{\"fileId\":1900363333401927680,\"fileName\":\"新型基础测绘与实景三维中国建设技术文件-3.doc\"},{\"fileId\":1900363333229961216,\"fileName\":\"面向网页文本的地理要素变化检测.doc\"},{\"fileId\":1900363333917827072,\"fileName\":\"基于自然语言处理的地理要素变化信息抽取研究_林丹.doc\"},{\"fileId\":1900363332449820673,\"fileName\":\"基于深度学习的地理要素类别语义匹配研究进展_蔡荣锋.doc\"},{\"fileId\":1900363333414510592,\"fileName\":\"新型基础测绘与实景三维中国建设技术文件-1.doc\"},{\"fileId\":1900363332084916224,\"fileName\":\"GB∕T 37118_地理实体空间数据规范.pdf\"},{\"fileId\":1900363332454014976,\"fileName\":\"多源地理要素变化识别研究_胡菡.doc\"},{\"fileId\":1900363333846523904,\"fileName\":\"从地理信息系统到地理智能体_罗斌.doc\"},{\"fileId\":1900363332449820672,\"fileName\":\"地理要素数据变化信息关联传递技术研究_王乃生.doc\"},{\"fileId\":1900363333208989696,\"fileName\":\"1_10000基础地理信息地形要素数据规范.doc\"},{\"fileId\":1900363332378517504,\"fileName\":\"《土地利用现状分类》GBT+21010-2017.pdf\"}]",
+    "LANGSERVE_PLUGINS": "{\"1900388813788221441\": \"查询数据库表结构\",\"1900388813784027136\": \"执行sql\",\"1900388813788221440\": \"查询数据库详情\",\"1900388850299637760\": \"文档相似性查询\", \"1900388813674975232\": \"重排序\"}"
+  }
+}

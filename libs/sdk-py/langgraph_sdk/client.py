@@ -65,7 +65,7 @@ from langgraph_sdk.sse import SSEDecoder, aiter_lines_raw, iter_lines_raw
 logger = logging.getLogger(__name__)
 
 
-RESERVED_HEADERS = ("x-api-key",)
+RESERVED_HEADERS = ("x-langgraph_api-key",)
 
 
 def _get_api_key(api_key: Optional[str] = None) -> Optional[str]:
@@ -99,7 +99,7 @@ def get_headers(
     }
     api_key = _get_api_key(api_key)
     if api_key:
-        headers["x-api-key"] = api_key
+        headers["x-langgraph_api-key"] = api_key
 
     return headers
 
@@ -218,7 +218,7 @@ class HttpClient:
             if sys.version_info >= (3, 11):
                 e.add_note(body)
             else:
-                logger.error(f"Error from langgraph-api: {body}", exc_info=e)
+                logger.error(f"Error from langgraph_api: {body}", exc_info=e)
             raise e
         return await adecode_json(r)
 
@@ -236,7 +236,7 @@ class HttpClient:
             if sys.version_info >= (3, 11):
                 e.add_note(body)
             else:
-                logger.error(f"Error from langgraph-api: {body}", exc_info=e)
+                logger.error(f"Error from langgraph_api: {body}", exc_info=e)
             raise e
         return await adecode_json(r)
 
@@ -251,7 +251,7 @@ class HttpClient:
             if sys.version_info >= (3, 11):
                 e.add_note(body)
             else:
-                logger.error(f"Error from langgraph-api: {body}", exc_info=e)
+                logger.error(f"Error from langgraph_api: {body}", exc_info=e)
             raise e
         return await adecode_json(r)
 
@@ -266,7 +266,7 @@ class HttpClient:
             if sys.version_info >= (3, 11):
                 e.add_note(body)
             else:
-                logger.error(f"Error from langgraph-api: {body}", exc_info=e)
+                logger.error(f"Error from langgraph_api: {body}", exc_info=e)
             raise e
         return await adecode_json(r)
 
@@ -280,7 +280,7 @@ class HttpClient:
             if sys.version_info >= (3, 11):
                 e.add_note(body)
             else:
-                logger.error(f"Error from langgraph-api: {body}", exc_info=e)
+                logger.error(f"Error from langgraph_api: {body}", exc_info=e)
             raise e
 
     async def stream(
@@ -307,7 +307,7 @@ class HttpClient:
                 if sys.version_info >= (3, 11):
                     e.add_note(body)
                 else:
-                    logger.error(f"Error from langgraph-api: {body}", exc_info=e)
+                    logger.error(f"Error from langgraph_api: {body}", exc_info=e)
                 raise e
             # check content type
             content_type = res.headers.get("content-type", "").partition(";")[0]
@@ -2434,7 +2434,7 @@ class SyncHttpClient:
             if sys.version_info >= (3, 11):
                 e.add_note(body)
             else:
-                logger.error(f"Error from langgraph-api: {body}", exc_info=e)
+                logger.error(f"Error from langgraph_api: {body}", exc_info=e)
             raise e
         return decode_json(r)
 
@@ -2452,7 +2452,7 @@ class SyncHttpClient:
             if sys.version_info >= (3, 11):
                 e.add_note(body)
             else:
-                logger.error(f"Error from langgraph-api: {body}", exc_info=e)
+                logger.error(f"Error from langgraph_api: {body}", exc_info=e)
             raise e
         return decode_json(r)
 
@@ -2467,7 +2467,7 @@ class SyncHttpClient:
             if sys.version_info >= (3, 11):
                 e.add_note(body)
             else:
-                logger.error(f"Error from langgraph-api: {body}", exc_info=e)
+                logger.error(f"Error from langgraph_api: {body}", exc_info=e)
             raise e
         return decode_json(r)
 
@@ -2482,7 +2482,7 @@ class SyncHttpClient:
             if sys.version_info >= (3, 11):
                 e.add_note(body)
             else:
-                logger.error(f"Error from langgraph-api: {body}", exc_info=e)
+                logger.error(f"Error from langgraph_api: {body}", exc_info=e)
             raise e
         return decode_json(r)
 
@@ -2496,7 +2496,7 @@ class SyncHttpClient:
             if sys.version_info >= (3, 11):
                 e.add_note(body)
             else:
-                logger.error(f"Error from langgraph-api: {body}", exc_info=e)
+                logger.error(f"Error from langgraph_api: {body}", exc_info=e)
             raise e
 
     def stream(
@@ -2520,7 +2520,7 @@ class SyncHttpClient:
                 if sys.version_info >= (3, 11):
                     e.add_note(body)
                 else:
-                    logger.error(f"Error from langgraph-api: {body}", exc_info=e)
+                    logger.error(f"Error from langgraph_api: {body}", exc_info=e)
                 raise e
             # check content type
             content_type = res.headers.get("content-type", "").partition(";")[0]

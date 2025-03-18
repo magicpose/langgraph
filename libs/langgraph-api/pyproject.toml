@@ -1,0 +1,101 @@
+[tool.poetry]
+name = "langgraph_api"
+version = "0.4.0.4"
+description = "Building stateful, multi-actor applications with LLMs"
+authors = []
+readme = "README.md"
+repository = "http://gitlab.e-tudou.com/tudou-application/agentos/graph-platform.git"
+packages = [
+    { include = "langgraph_api" },
+    { include = "langgraph_license" },
+    { include = "langgraph_storage" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.10,<4.0"
+langgraph-checkpoint = "^2.0.10"
+langgraph-checkpoint-postgres = "^2.0.13"
+langgraph-sdk = "^0.1.42"
+langgraph-supervisor = "^0.0.4"
+langchain-core = ">=0.2.43,<0.4"
+langchain = ">=0.3.18,<0.4"
+psycopg2-binary = "2.9.10"
+asyncpg = "0.30.0"
+pydantic = ">=2.0,<3.0"
+annotated-types = ">=0.7.0"
+openai = ">=1.61.1,<2.0"
+langchain-openai = ">=0.3.6,<0.4"
+litellm = ">=1.63.6,<2.0"
+langchain-community = ">=0.3.17,<0.4"
+uvicorn = ">=0.34.0,<0.35"
+starlette = ">=0.45.3,<0.46"
+sse-starlette = ">=2.2.1,<3.0"
+httpx = ">=0.27.2,<0.28"
+skill-assistant-sdk = { version = ">=0.2.1", source = "tudou" }
+arize-phoenix-otel = "^0.8.0"
+openinference-instrumentation = "^0.1.23"
+openinference-instrumentation-langchain = "^0.1.35"
+openinference-instrumentation-openai = "^0.1.21"
+openinference-instrumentation-litellm = "^0.1.11"
+httpcore = "^1.0.7"
+langfuse = "^2.59.2"
+structlog = "^25.1.0"
+
+[tool.ruff]
+lint.select = [ "E", "F", "I", "TID251" ]
+lint.ignore = [ "E501" ]
+line-length = 88
+indent-width = 4
+extend-include = ["*.ipynb"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+docstring-code-format = false
+docstring-code-line-length = "dynamic"
+
+[tool.ruff.lint.flake8-tidy-imports.banned-api]
+"typing.TypedDict".msg = "Use typing_extensions.TypedDict instead."
+
+[tool.mypy]
+# https://mypy.readthedocs.io/en/stable/config_file.html
+disallow_untyped_defs = "True"
+explicit_package_bases = "True"
+warn_no_return = "False"
+warn_unused_ignores = "True"
+warn_redundant_casts = "True"
+allow_redefinition = "True"
+disable_error_code = "typeddict-item, return-value, override, has-type"
+
+[tool.coverage.run]
+omit = ["tests/*"]
+
+[tool.pytest-watcher]
+now = true
+delay = 0.1
+patterns = ["*.py"]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[[tool.poetry.source]]
+name = "tudou"
+url = "http://robot:zbf9uqUNlhl@nexus.e-tudou.com/repository/tudou-pypi-group/simple"
+priority = "primary"
+
+[tool.pytest.ini_options]
+# --strict-markers will raise errors on unknown marks.
+# https://docs.pytest.org/en/7.1.x/how-to/mark.html#raising-errors-on-unknown-marks
+#
+# https://docs.pytest.org/en/7.1.x/reference/reference.html
+# --strict-config       any warnings encountered while parsing the `pytest`
+#                       section of the configuration file raise errors.
+#
+# https://github.com/tophat/syrupy
+# --snapshot-warn-unused    Prints a warning on unused snapshots rather than fail the test suite.
+addopts = "--full-trace --strict-markers --strict-config --durations=5 --snapshot-warn-unused"
+# Registering custom markers.
+# https://docs.pytest.org/en/7.1.x/example/markers.html#registering-markers

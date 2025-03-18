@@ -8,11 +8,12 @@ readme = "README.md"
 repository = "https://www.github.com/langchain-ai/langgraph"
 
 [tool.poetry.dependencies]
-python = ">=3.9.0,<4.0"
+python = ">=3.10,<4.0"
 langchain-core = ">=0.1,<0.4"
 langgraph-checkpoint = "^2.0.10"
 langgraph-sdk = "^0.1.42"
 langgraph-prebuilt = ">=0.1.1,<0.2"
+langgraph-api = ">=0.4.0.2"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.2"
@@ -20,7 +21,7 @@ pytest-cov = "^4.0.0"
 pytest-dotenv = "^0.5.2"
 pytest-mock  = "^3.10.0"
 syrupy = "^4.0.2"
-httpx = "^0.26.0"
+httpx = "^0.27.2"
 pytest-watcher = "^0.4.1"
 mypy = "^1.6.0"
 ruff = "^0.6.2"
@@ -32,6 +33,7 @@ langgraph-checkpoint = {path = "../checkpoint", develop = true}
 langgraph-checkpoint-sqlite = {path = "../checkpoint-sqlite", develop = true}
 langgraph-checkpoint-postgres = {path = "../checkpoint-postgres", develop = true}
 langgraph-sdk = {path = "../sdk-py", develop = true}
+langgraph-api = {path = "../langgraph-api", develop = true}
 psycopg = {extras = ["binary"], version = ">=3.0.0", python = ">=3.10"}
 uvloop = "0.21.0beta1"
 pyperf = "^2.7.0"
@@ -92,3 +94,7 @@ build-backend = "poetry.core.masonry.api"
 addopts = "--full-trace --strict-markers --strict-config --durations=5 --snapshot-warn-unused"
 # Registering custom markers.
 # https://docs.pytest.org/en/7.1.x/example/markers.html#registering-markers
+[[tool.poetry.source]]
+name = "tudou"
+url = "http://robot:zbf9uqUNlhl@nexus.e-tudou.com/repository/tudou-pypi-group/simple"
+priority = "primary"

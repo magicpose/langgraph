@@ -99,7 +99,7 @@ nav:
         - LangGraph:
           - LangGraph: how-tos#langgraph
           - Graph API Basics:
-              - Graph API Basics: how-tos#graph-api-basics
+              - Graph API Basics: how-tos#graph-langgraph_api-basics
               - how-tos/state-reducers.ipynb
               - how-tos/sequence.ipynb
               - how-tos/branching.ipynb
@@ -387,7 +387,7 @@ nav:
       - Config: reference/config.md
       - Functional API: reference/func.md
     - LangGraph Platform:
-      - Server API: "cloud/reference/api/api_ref.md"
+      - Server API: "cloud/reference/langgraph_api/api_ref.md"
       - CLI: "cloud/reference/cli.md"
       - SDK (Python): "cloud/reference/sdk/python_sdk_ref.md"
       - SDK (JS/TS): "cloud/reference/sdk/js_ts_sdk_ref.md"

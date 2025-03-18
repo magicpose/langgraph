@@ -1,0 +1,28 @@
+{
+  "python_version": "3.11",
+  "dependencies": [
+    "."
+  ],
+  "graphs": {
+    "agent": "graphs/graph.py:graph",
+    "db": "graphs/text2sql/db.py:db_graph",
+    "knowledge": "graphs/knowledge/graph.py:doc_graph"
+  },
+  "env": {
+    "POSTGRES_URL": "postgresql://postgres:postgres@10.1.3.122:5433/postgres?sslmode=disable",
+    "LANGFUSE_HOST": "http://10.1.3.122:3005",
+    "LANGFUSE_PUBLIC_KEY": "pk-lf-2f7f19a3-0cd2-47f2-bb5e-7bcf84a64ac6",
+    "LANGFUSE_SECRET_KEY": "sk-lf-e66fb8a1-d69f-4e34-8455-c27ae57cf4d9",
+    "AGENT_AUTH_ENDPOINT": "http://10.0.36.123:9080",
+    "PHOENIX_COLLECTOR_ENDPOINT": "http://10.1.5.56:6006",
+    "OPENAI_API_KEY": "sk-uG93vRV5V2Dog95J15FfCdE5DaAe438fBb17C642F2E1Ae57",
+    "OPENAI_API_BASE": "http://ai-api.e-tudou.com:9000/v1",
+    "PHOENIX_PROJECT": "agent",
+    "SUB_SERVICE_CODE": "knowledge_document",
+    "SERVICE_CODE": "agentos_creator",
+    "SOURCE":"agentos",
+    "DATABASE_CONF": "{\"database_id\":773,\"database_name\":\"potato_geo_element\",\"database_type\":\"postgresql\"}",
+    "FILES": "[{\"fileId\":1901512815023841280,\"fileName\":\"公文+诊断产品介绍.pdf\"},{\"fileId\":1901512814998675456,\"fileName\":\"企业数字化诊断智能体.pdf\"},{\"fileId\":1901512760841822208,\"fileName\":\"公文创作智能体.pdf\"},{\"fileId\":1901512726498861056,\"fileName\":\"在线实景三维使用手册.docx\"},{\"fileId\":1901512684069281792,\"fileName\":\"实景三维解决方案框架梳理.doc\"},{\"fileId\":1901512667820548096,\"fileName\":\"实景三维解决方案框架梳理.doc\"},{\"fileId\":1901512634815569920,\"fileName\":\"孪生场景构建智能体.pptx\"},{\"fileId\":1901512628423450624,\"fileName\":\"A4-数字孪生平台智能体 _ 210x297 mm.pdf\"},{\"fileId\":1901512567899643904,\"fileName\":\"智慧水利.pptx\"},{\"fileId\":1901512494948114432,\"fileName\":\"城市体检智能体.pdf\"},{\"fileId\":1901510777007333376,\"fileName\":\"行业大模型解决方案.pdf\"},{\"fileId\":1901512289095868416,\"fileName\":\"洛书公文创作大模型说明.docx\"},{\"fileId\":1901512289154588672,\"fileName\":\"政务增效和设施运营大模型训练算力需求.docx\"},{\"fileId\":1901512289867620352,\"fileName\":\"洛书政务SQL生成大模型说明.docx\"},{\"fileId\":1901512290073141248,\"fileName\":\"洛书大纲生成大模型说明.docx\"},{\"fileId\":1901512257944772608,\"fileName\":\"基于Agent OS的公文格式刷智能体使用.docx\"},{\"fileId\":1901512215146094592,\"fileName\":\"基于Agent OS的城市体检智能体创建.docx\"},{\"fileId\":1901512152059568128,\"fileName\":\"洛书城市事件识别大模型说明.docx\"},{\"fileId\":1901512214638583808,\"fileName\":\"洛书城市目标检测大模型说明.docx\"},{\"fileId\":1901512216345665536,\"fileName\":\"基于Agent OS的城市体检智能体使用.docx\"},{\"fileId\":1901512155037523968,\"fileName\":\"基于Agent OS的城市体检智能体使用.docx\"},{\"fileId\":1901512152101511168,\"fileName\":\"洛书城市目标检测大模型说明.docx\"},{\"fileId\":1901512152835514368,\"fileName\":\"基于Agent OS的城市体检智能体创建.docx\"},{\"fileId\":1901512152059568128,\"fileName\":\"洛书城市事件识别大模型说明.docx\"},{\"fileId\":1901510777007333376,\"fileName\":\"行业大模型解决方案.pdf\"},{\"fileId\":1901510777007333376,\"fileName\":\"行业大模型解决方案.pdf\"},{\"fileId\":1901511892084023296,\"fileName\":\"prompt测试.docx\"},{\"fileId\":1901511892071440384,\"fileName\":\"数据上传.docx\"},{\"fileId\":1901511866108698624,\"fileName\":\"自然资源.pptx\"},{\"fileId\":1901511865399861248,\"fileName\":\"自然资源数据治理平台.pptx\"},{\"fileId\":1901510799077761024,\"fileName\":\"作弊码功能.docx\"},{\"fileId\":1901510797827858432,\"fileName\":\"策略设定精准输入功能.docx\"},{\"fileId\":1901510797798498304,\"fileName\":\"模型API服务.docx\"},{\"fileId\":1901510799883067392,\"fileName\":\"基于大模型平台的技能调用模型微调.docx\"},{\"fileId\":1901510798259871744,\"fileName\":\"视觉大模型-素材.docx\"},{\"fileId\":1901510798247288832,\"fileName\":\"巧用Prompt前缀.docx\"},{\"fileId\":1901510797995630592,\"fileName\":\"大模型推理部署资料.docx\"},{\"fileId\":1901510799077761024,\"fileName\":\"作弊码功能.docx\"},{\"fileId\":1901510797995630592,\"fileName\":\"大模型推理部署资料.docx\"},{\"fileId\":1901510797827858432,\"fileName\":\"策略设定精准输入功能.docx\"},{\"fileId\":1901510798247288832,\"fileName\":\"巧用Prompt前缀.docx\"},{\"fileId\":1901510799883067392,\"fileName\":\"基于大模型平台的技能调用模型微调.docx\"},{\"fileId\":1901510797798498304,\"fileName\":\"模型API服务.docx\"},{\"fileId\":1901510798259871744,\"fileName\":\"视觉大模型-素材.docx\"},{\"fileId\":1901510777007333376,\"fileName\":\"行业大模型解决方案.pdf\"},{\"fileId\":1901510782522843136,\"fileName\":\"洛书基础大模型.pptx\"},{\"fileId\":1901510766160863232,\"fileName\":\"土豆洛书多模态视觉大模型介绍v1.0.docx\"},{\"fileId\":1901510769377894400,\"fileName\":\"A4-洛书大模型开发平台.pdf\"},{\"fileId\":1901510770254503936,\"fileName\":\"A4-全域感知多模态大模型 _ 210x297 mm.pdf\"},{\"fileId\":1901510767058444288,\"fileName\":\"洛书大模型介绍.docx\"},{\"fileId\":1901510686083211264,\"fileName\":\"数据平台技术文档.pptx\"},{\"fileId\":1901510659860422656,\"fileName\":\"架构及优势.pptx\"},{\"fileId\":1901510656261709824,\"fileName\":\"数据分析Agent产品培训.pdf\"},{\"fileId\":1901510657805213696,\"fileName\":\"A4-数据平台.pdf\"},{\"fileId\":1901510603799355392,\"fileName\":\"3. 技能开发.docx\"},{\"fileId\":1901510576901283840,\"fileName\":\"3. 技能开发.docx\"},{\"fileId\":1901510526146011136,\"fileName\":\"2. 快速开始.docx\"},{\"fileId\":1901510494944583680,\"fileName\":\"Agent OS.pdf\"},{\"fileId\":1901510494952972288,\"fileName\":\"Agent和Agent技术系列分享第二讲 2024-05-14.pdf\"},{\"fileId\":1901510501970042880,\"fileName\":\"弗雷云产品体系0615.pdf\"},{\"fileId\":1901510494948777984,\"fileName\":\"1. AgentOS介绍.docx\"}]",
+    "LANGSERVE_PLUGINS": "{\"1900388813788221441\": \"查询数据库表结构\",\"1900388813784027136\": \"执行sql\",\"1900388813788221440\": \"查询数据库详情\",\"1900388850299637760\": \"文档相似性查询\", \"1900388813674975232\": \"重排序\"}"
+  }
+}

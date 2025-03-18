@@ -1,0 +1,21 @@
+{
+  "python_version": "3.11",
+  "dependencies": [
+    "."
+  ],
+  "graphs": {
+    "agent": "workflow.py:graph"
+  },
+  "plugins": {
+    "": ""
+  },
+  "env": {
+    "POSTGRES_URL": "postgresql://postgres:postgres@10.1.3.122:5433/postgres?sslmode=disable",
+    "LANGFUSE_HOST": "http://10.1.3.122:3005",
+    "LANGFUSE_PUBLIC_KEY": "pk-lf-2f7f19a3-0cd2-47f2-bb5e-7bcf84a64ac6",
+    "LANGFUSE_SECRET_KEY": "sk-lf-e66fb8a1-d69f-4e34-8455-c27ae57cf4d9",
+    "AGENT_AUTH_ENDPOINT": "http://10.0.36.113:9080",
+    "OPENAI_API_KEY": "sk-uG93vRV5V2Dog95J15FfCdE5DaAe438fBb17C642F2E1Ae57",
+    "OPENAI_API_BASE": "http://ai-api.e-tudou.com:9000/v1"
+  }
+}

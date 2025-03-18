@@ -394,7 +394,7 @@ async def test_cannot_put_empty_namespace() -> None:
     store.delete(("foo", "langgraph", "foo"), "bar")
     assert store.get(("foo", "langgraph", "foo"), "bar") is None
 
-    # Do the same but go past the public put api
+    # Do the same but go past the public put langgraph_api
     await store.abatch([PutOp(("langgraph", "foo"), "bar", doc)])
     assert (await store.aget(("langgraph", "foo"), "bar")).value == doc  # type: ignore[union-attr]
     assert (await store.asearch(("langgraph", "foo")))[0].value == doc

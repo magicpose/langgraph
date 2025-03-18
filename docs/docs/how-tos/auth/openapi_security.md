@@ -21,7 +21,7 @@ components:
     apiKeyAuth:
       type: apiKey
       in: header
-      name: x-api-key
+      name: x-langgraph_api-key
 security:
   - apiKeyAuth: []
 ```

@@ -1,0 +1,54 @@
+base:
+  - id: "2451754146531336332"
+    userId: "1302"
+    tenantId: "81"
+    version: "v0.2"
+    subVersion: "2"
+    status: null
+    nacos:
+      dataId: "agentos-1302-81-2418601414232530987"
+      addr: "nacos-dev1.e-tudou.com:8848"
+      group: "DEFAULT_GROUP"
+      namespace: "dev1"
+      username: "tudou"
+      password: "tudou666"
+    role:
+      avatar: "https://minio-dev.e-tudou.com/public-agentos/creator/avatarS4/avatar3x.png"
+      name: "董佳121test"
+      greeting: "测试"
+      background: "测试"
+      question_examples: []
+    action_module:
+      plugins:
+        - id: "1772501205906386944"
+          plugin_name: "query_skill_detail"
+          plugin_description: "用于查询技能详情"
+          summoning_spell: null
+          need_confirm: true
+          visual_setting: "1"
+          plugin_privilege: "confidential"
+          auto_execute: 0
+          enable: 1
+          english_name: "query_skill_detail"
+        - id: "1772805167842881536"
+          plugin_name: "百度首页"
+          plugin_description: null
+          summoning_spell: null
+          need_confirm: true
+          visual_setting: "1"
+          plugin_privilege: "confidential"
+          auto_execute: 0
+          enable: 1
+          english_name: "baidu_homepage"
+        - id: "1798246479105163264"
+          plugin_name: "查询天气情况"
+          plugin_description: null
+          summoning_spell: null
+          need_confirm: true
+          visual_setting: "1"
+          plugin_privilege: "confidential"
+          auto_execute: 0
+          enable: 1
+          english_name: "query_weather_conditions"
+
+    route_id: "2418601414232530987"

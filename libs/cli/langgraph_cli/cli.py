@@ -275,9 +275,9 @@ def _build(
     passthrough: Sequence[str] = (),
 ):
     base_image = base_image or (
-        "langchain/langgraphjs-api"
+        "langchain/langgraphjs-langgraph_api"
         if config_json.get("node_version")
-        else "langchain/langgraph-api"
+        else "langchain/langgraph_api"
     )
 
     # pull latest images
@@ -451,9 +451,9 @@ def dockerfile(save_path: str, config: pathlib.Path, add_docker_compose: bool) -
         config,
         config_json,
         (
-            "langchain/langgraphjs-api"
+            "langchain/langgraphjs-langgraph_api"
             if config_json.get("node_version")
-            else "langchain/langgraph-api"
+            else "langchain/langgraph_api"
         ),
     )
     with open(str(save_path), "w", encoding="utf-8") as f:
@@ -486,10 +486,10 @@ def dockerfile(save_path: str, config: pathlib.Path, add_docker_compose: bool) -
                 capabilities,
                 port=8123,
             )
-            # Add .env file to the docker-compose.yml for the langgraph-api service
-            compose_dict["services"]["langgraph-api"]["env_file"] = [".env"]
+            # Add .env file to the docker-compose.yml for the langgraph_api service
+            compose_dict["services"]["langgraph_api"]["env_file"] = [".env"]
             # Add the Dockerfile to the build context
-            compose_dict["services"]["langgraph-api"]["build"] = {
+            compose_dict["services"]["langgraph_api"]["build"] = {
                 "context": ".",
                 "dockerfile": save_path.name,
             }
@@ -504,7 +504,7 @@ def dockerfile(save_path: str, config: pathlib.Path, add_docker_compose: bool) -
                     [
                         "# Uncomment the following line to add your LangSmith API key",
                         "\n",
-                        "# LANGSMITH_API_KEY=your-api-key",
+                        "# LANGSMITH_API_KEY=your-langgraph_api-key",
                         "\n",
                         "# Or if you have a LangGraph Cloud license key, "
                         "then uncomment the following line: ",
@@ -605,7 +605,7 @@ def dev(
 
             if not util.find_spec("langgraph_api"):
                 raise click.UsageError(
-                    "Required package 'langgraph-api' is not installed.\n"
+                    "Required package 'langgraph_api' is not installed.\n"
                     "Please install it with:\n\n"
                     '    pip install -U "langgraph-cli[inmem]"'
                     f"{py_version_msg}"
@@ -702,9 +702,9 @@ def prepare_args_and_stdin(
         config,
         watch=watch,
         base_image=(
-            "langchain/langgraphjs-api"
+            "langchain/langgraphjs-langgraph_api"
             if config.get("node_version")
-            else "langchain/langgraph-api"
+            else "langchain/langgraph_api"
         ),
     )
     return args, stdin
@@ -733,9 +733,9 @@ def prepare(
                 "docker",
                 "pull",
                 (
-                    f"langchain/langgraphjs-api:{config_json['node_version']}"
+                    f"langchain/langgraphjs-langgraph_api:{config_json['node_version']}"
                     if config_json.get("node_version")
-                    else f"langchain/langgraph-api:{config_json['python_version']}"
+                    else f"langchain/langgraph_api:{config_json['python_version']}"
                 ),
                 verbose=verbose,
             )
